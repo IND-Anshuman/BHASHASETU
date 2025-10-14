@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+pydantic
+ffmpeg-python
+opencv-python
+pytesseract
+requests
+sqlalchemy
+aiosqlite
