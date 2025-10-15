@@ -1,5 +1,6 @@
-import { Home, ChevronLeft, ChevronRight, Volume2, BookOpen, CheckCircle, Circle, Languages } from 'lucide-react';
+import { Home, ChevronLeft, ChevronRight, Volume2, BookOpen, CheckCircle, Circle, Languages, LogOut, User, Loader2 } from 'lucide-react';
 import { useState } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 type Page = 'landing' | 'learner' | 'admin' | 'translation' | 'voice';
 
@@ -8,6 +9,7 @@ interface LearnerModuleProps {
 }
 
 export default function LearnerModule({ onNavigate }: LearnerModuleProps) {
+  const { user, loading, signOut } = useAuth();
   const [isDualLanguage, setIsDualLanguage] = useState(true);
   const [selectedLanguage, setSelectedLanguage] = useState('Hindi');
   const [currentLesson, setCurrentLesson] = useState(0);
@@ -48,6 +50,45 @@ export default function LearnerModule({ onNavigate }: LearnerModuleProps) {
                 <BookOpen className="w-4 h-4 text-cyan-600" />
                 <span className="text-sm font-medium text-slate-700">Welding Fundamentals</span>
               </div>
+              {/* Auth controls */}
+              {loading ? (
+                <div className="flex items-center justify-center p-2">
+                  <Loader2 className="w-5 h-5 animate-spin text-cyan-600" />
+                </div>
+              ) : user ? (
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-gradient-to-r from-cyan-600 to-teal-600 rounded-full flex items-center justify-center">
+                      {user.user_metadata?.avatar_url ? (
+                        <img
+                          src={user.user_metadata.avatar_url}
+                          alt="Profile"
+                          className="w-8 h-8 rounded-full object-cover"
+                        />
+                      ) : (
+                        <User className="w-4 h-4 text-white" />
+                      )}
+                    </div>
+                    <div className="text-sm">
+                      <p className="font-medium text-slate-800">
+                        {user.user_metadata?.full_name || user.email?.split('@')[0]}
+                      </p>
+                      <p className="text-xs text-slate-600">Google Account</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={signOut}
+                    className="flex items-center space-x-1 px-3 py-1.5 text-sm text-slate-600 hover:text-red-600 transition-colors rounded-lg hover:bg-red-50"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="text-sm font-medium text-slate-700">
+                  Welcome, Guest
+                </div>
+              )}
             </div>
           </div>
         </div>
