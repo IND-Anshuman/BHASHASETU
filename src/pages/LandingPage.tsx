@@ -1,5 +1,6 @@
 import { Globe2, Languages, Mic, BookOpen, Users, ArrowRight, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import GoogleLogin from '../components/GoogleLogin';
 
 type Page = 'landing' | 'learner' | 'admin' | 'translation' | 'voice';
 
@@ -26,6 +27,7 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
               <a href="#features" className="text-slate-700 hover:text-blue-600 transition-colors">Features</a>
               <a href="#about" className="text-slate-700 hover:text-blue-600 transition-colors">About</a>
               <a href="#contact" className="text-slate-700 hover:text-blue-600 transition-colors">Contact</a>
+              <GoogleLogin />
               <button
                 onClick={() => onNavigate('learner')}
                 className="px-5 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full hover:shadow-lg transition-all"
@@ -49,6 +51,9 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
               <a href="#features" className="block text-slate-700 hover:text-blue-600">Features</a>
               <a href="#about" className="block text-slate-700 hover:text-blue-600">About</a>
               <a href="#contact" className="block text-slate-700 hover:text-blue-600">Contact</a>
+              <div className="flex justify-center">
+                <GoogleLogin />
+              </div>
               <button
                 onClick={() => onNavigate('learner')}
                 className="w-full px-5 py-2 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full"
@@ -85,6 +90,10 @@ export default function LandingPage({ onNavigate }: LandingPageProps) {
                 <button className="px-8 py-4 bg-white text-slate-700 rounded-full border-2 border-slate-200 hover:border-blue-600 transition-all">
                   Learn More
                 </button>
+              </div>
+              <div className="mt-6">
+                <p className="text-sm text-slate-600 mb-3">Or sign in to start learning:</p>
+                <GoogleLogin />
               </div>
             </div>
 
