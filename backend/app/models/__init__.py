@@ -88,6 +88,7 @@ class DocumentTranslateResult(BaseModel):
     file_type: str
     glossary_applied: bool
     region_adapted: bool
+    output_path: Optional[str] = None
 
 # Subtitle Models
 class SubtitleExtractRequest(BaseModel):
