@@ -1,5 +1,6 @@
 import { Home, Users, BookOpen, Languages, TrendingUp, Download, Settings, ChevronRight, BarChart3 } from 'lucide-react';
 import { useState } from 'react';
+import GoogleLogin from '../components/GoogleLogin';
 
 type Page = 'landing' | 'learner' | 'admin' | 'translation' | 'voice';
 
@@ -39,6 +40,7 @@ export default function AdminDashboard({ onNavigate }: AdminDashboardProps) {
               <span className="font-medium">Home</span>
             </button>
             <div className="flex items-center space-x-4">
+              {/* <GoogleLogin /> */}
               <button
                 onClick={() => onNavigate('translation')}
                 className="px-4 py-2 bg-gradient-to-r from-violet-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all text-sm font-medium"
